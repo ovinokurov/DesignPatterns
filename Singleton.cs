@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns
 {
-    public class Singleton
+    public class Singleton : ISubject
     {
         private static Singleton instance;
+        private List<IObserver> observers = new List<IObserver>();
 
         private Singleton()
         {
@@ -24,6 +25,24 @@ namespace DesignPatterns
                     instance = new Singleton();
                 }
                 return instance;
+            }
+        }
+
+        public void Attach(IObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Detach(IObserver observer)
+        {
+            observers.Remove(observer);
+        }
+
+        public void NotifyObservers(string message)
+        {
+            foreach (var observer in observers)
+            {
+                observer.Update(message);
             }
         }
 

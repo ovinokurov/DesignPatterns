@@ -12,10 +12,25 @@ static string GetUsername(string emailAddress)
 
 //Singleton Pattern
 Console.WriteLine("Singleton Pattern");
+Singleton singleton = Singleton.Instance;
 Console.WriteLine($"Hello, {Singleton.Instance.GetUsername("Oleg@gmail.com")}!");
+
 
 //Factory Pattern
 ProductFactory factory = new ProductFactory();
 IProduct product = factory.CreateProduct();
 Console.WriteLine("Factory Pattern");
 Console.WriteLine($"Hello, {product.GetUsername("Oleg@gmail.com")}!");
+
+
+// Observer Pattern
+Console.WriteLine("Observer Pattern");
+Observer observer = new Observer();
+singleton.Attach(observer);
+singleton.NotifyObservers("Oleg@gmail.com");
+string username = observer.GetUsername();
+Console.WriteLine($"Hello, {username}!");
+
+// Other methods and code...
+
+singleton.Detach(observer);
