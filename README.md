@@ -12,7 +12,8 @@ The project currently contains the following design patterns:
 
 1. Singleton Pattern
 2. Factory Pattern
-3. Observer Pattern (Work in Progress)
+3. Observer Pattern
+4. Dependency Injection Pattern
 
 ## How to Use
 
@@ -38,5 +39,3 @@ This project was developed by **Oleg Vinokurov**. You can find more about the de
 ## Disclaimer
 
 This project is intended for educational purposes only. It provides simplified examples of design patterns and should not be considered as production-ready code. The primary focus is on understanding the concepts and principles behind each design pattern.
-
-
