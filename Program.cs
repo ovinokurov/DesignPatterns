@@ -20,6 +20,31 @@ public class Program
         return (atIndex > 0) ? emailAddress.Substring(0, atIndex) : string.Empty;
     }
 
+    abstract class UsernameExtractor
+    {
+        public string GetUsername(string emailAddress)
+        {
+            int atIndex = emailAddress.IndexOf('@');
+            string username = (atIndex > 0) ? emailAddress.Substring(0, atIndex) : string.Empty;
+            string processedUsername = ProcessUsername(username);
+            return processedUsername;
+        }
+
+        protected abstract string ProcessUsername(string username);
+    }
+
+    class CustomUsernameExtractor : UsernameExtractor
+    {
+        protected override string ProcessUsername(string username)
+        {
+            // Custom processing logic specific to this subclass
+            // You can modify or add additional steps here
+
+            // Example: Convert the username to uppercase
+            return username.ToUpper();
+        }
+    }
+
     static void Main()
     {
         // No Pattern
@@ -45,10 +70,15 @@ public class Program
         string username = observer.GetUsername();
         Console.WriteLine($"Hello, {username}!");
 
-        // Dependency Injection (Injection Pattern)
+        // Dependency Injection Pattern
         Console.WriteLine("Dependency Injection Pattern");
         Program program = new Program();
         program.RunDependencyInjection("Oleg@gmail.com");
+
+        // Template Method Pattern - CustomUsernameExtractor
+        Console.WriteLine("Template Method Pattern - CustomUsernameExtractor");
+        CustomUsernameExtractor usernameExtractor = new CustomUsernameExtractor();
+        Console.WriteLine($"Hello, {usernameExtractor.GetUsername("Oleg@gmail.com")}!");
 
         // Other methods and code...
         singleton.Detach(observer);

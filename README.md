@@ -14,6 +14,7 @@ The project currently contains the following design patterns:
 2. Factory Pattern
 3. Observer Pattern
 4. Dependency Injection Pattern
+5. Template Method Pattern
 
 ## How to Use
 
